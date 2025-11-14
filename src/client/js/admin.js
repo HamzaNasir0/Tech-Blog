@@ -33,3 +33,26 @@ function requireAuth() {
   }
   return { token, user };
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const { token, user } = requireAuth();
+
+  adminLoginLink.style.display = 'none';
+  logoutLink.style.display = 'inline-block';
+  adminWelcome.textContent = `Logged in as ${user.username}`;
+
+  logoutLink.addEventListener('click', e => {
+    e.preventDefault();
+    localStorage.removeItem('techblog_token');
+    localStorage.removeItem('techblog_user');
+    window.location.href = 'index.html';
+  });
+
+  loadCategories(token);
+  loadMyPosts(token);
+
+  postForm.addEventListener('submit', e => handleSave(e, token));
+  clearBtn.addEventListener('click', clearForm);
+  deleteBtn.addEventListener('click', () => handleDelete(token));
+});
+
