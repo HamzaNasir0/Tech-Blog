@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Blog | Login</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Hamza<span>Tech</span> Blog</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="admin.html">Admin</a>
+                <a href="register.html">Register</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1 class="page-title">Login</h1>
+
+            <div class="form-card">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" required autocomplete="email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" required autocomplete="current-password" />
+                    </div>
+
+                    <button type="submit" class="btn">Login</button>
+                    <div class="status-message" id="loginStatus"></div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by Hamza • Tech Blog</p>
+        </footer>
+    </div>
+
+    <script src="./js/auth.js"></script>
+</body>
+
+</html>
