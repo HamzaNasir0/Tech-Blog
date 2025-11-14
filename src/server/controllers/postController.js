@@ -22,3 +22,35 @@ async function getPost(req, res) {
     return res.status(500).json({ error: 'Server error' });
   }
 }
+
+async function listMyPosts(req, res) {
+  try {
+    const posts = await Post.getPostsByUser(req.user.id);
+    return res.json(posts);
+  } catch (err) {
+    console.error('List my posts error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+async function createPost(req, res) {
+  try {
+    const { title, content, category_id } = req.body;
+
+    if (!title?.trim() || !content?.trim()) {
+      return res.status(400).json({ error: 'Title and content are required' });
+    }
+
+    const post = await Post.createPost({
+      title: title.trim(),
+      content: content.trim(),
+      category_id: category_id || null,
+      user_id: req.user.id
+    });
+
+    return res.status(201).json(post);
+  } catch (err) {
+    console.error('Create post error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
