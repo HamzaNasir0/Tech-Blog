@@ -56,3 +56,22 @@ document.addEventListener('DOMContentLoaded', () => {
   deleteBtn.addEventListener('click', () => handleDelete(token));
 });
 
+async function loadCategories(token) {
+  try {
+    const res = await fetch(`${API_BASE}/categories`);
+    const cats = await res.json();
+
+    postCategorySelect.innerHTML = '<option value="">Uncategorised</option>';
+
+    cats
+      .filter(c => c.slug !== 'all')
+      .forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = cat.name;
+        postCategorySelect.appendChild(opt);
+      });
+  } catch (err) {
+    console.error('Error loading categories', err);
+  }
+}
