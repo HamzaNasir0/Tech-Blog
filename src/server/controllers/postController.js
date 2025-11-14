@@ -80,3 +80,28 @@ async function updatePost(req, res) {
     return res.status(500).json({ error: 'Server error' });
   }
 }
+
+async function deletePost(req, res) {
+  try {
+    const { id } = req.params;
+    const ok = await Post.deletePost(id, req.user.id);
+
+    if (!ok) {
+      return res.status(404).json({ error: 'Post not found or not yours' });
+    }
+
+    return res.json({ message: 'Post deleted' });
+  } catch (err) {
+    console.error('Delete post error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
+
+module.exports = {
+  listPosts,
+  getPost,
+  listMyPosts,
+  createPost,
+  updatePost,
+  deletePost
+};
