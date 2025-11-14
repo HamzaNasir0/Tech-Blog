@@ -60,3 +60,11 @@ async function getPostsByUser(userId) {
   );
   return rows;
 }
+
+async function createPost({ title, content, category_id, user_id }) {
+  const [result] = await db.query(
+    'INSERT INTO posts (title, content, category_id, user_id) VALUES (?, ?, ?, ?)',
+    [title, content, category_id || null, user_id]
+  );
+  return getPostById(result.insertId);
+}
