@@ -127,3 +127,13 @@ function loadIntoForm(post) {
   deleteBtn.style.display = 'inline-block';
   postStatus.textContent = '';
 }
+
+function clearForm() {
+  postIdInput.value = '';
+  postTitleInput.value = '';
+  postContentTextarea.value = '';
+  postCategorySelect.value = '';
+  saveBtn.textContent = 'Create Post';
+  deleteBtn.style.display = 'none';
+  postStatus.textContent = '';
+}
