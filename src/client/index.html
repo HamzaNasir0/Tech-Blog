@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Blog | Home</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Hamza<span>Tech</span> Blog</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="admin.html">Admin</a>
+                <a href="login.html" id="loginLink">Login</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1 class="page-title">Latest Articles</h1>
+
+            <div class="category-bar" id="categoryBar">
+            </div>
+
+            <div id="postsContainer">
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon"></div>
+                    <p>No posts yet</p>
+                    <small>Once posts are created, they will appear here.</small>
+                </div>
+
+                <div class="posts-list" id="postsList"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made by Hamza • Tech Blog</p>
+        </footer>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
