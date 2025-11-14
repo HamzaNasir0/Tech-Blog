@@ -116,3 +116,14 @@ async function loadMyPosts(token) {
     console.error('Error loading my posts', err);
   }
 }
+
+function loadIntoForm(post) {
+  postIdInput.value = post.id;
+  postTitleInput.value = post.title;
+  postContentTextarea.value = post.content;
+  postCategorySelect.value = post.category_id || '';
+
+  saveBtn.textContent = 'Update Post';
+  deleteBtn.style.display = 'inline-block';
+  postStatus.textContent = '';
+}
