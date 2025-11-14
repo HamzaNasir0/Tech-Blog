@@ -84,3 +84,19 @@ async function updatePost(id, userId, { title, content, category_id }) {
   return getPostById(id);
 }
 
+async function deletePost(id, userId) {
+  const [rows] = await db.query(
+    'DELETE FROM posts WHERE id = ? AND user_id = ?',
+    [id, userId]
+  );
+  return rows.affectedRows > 0;
+}
+
+module.exports = {
+  getAllPosts,
+  getPostById,
+  getPostsByUser,
+  createPost,
+  updatePost,
+  deletePost
+};
