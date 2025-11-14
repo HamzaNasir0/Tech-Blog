@@ -54,3 +54,29 @@ async function createPost(req, res) {
     return res.status(500).json({ error: 'Server error' });
   }
 }
+
+async function updatePost(req, res) {
+  try {
+    const { id } = req.params;
+    const { title, content, category_id } = req.body;
+
+    if (!title?.trim() || !content?.trim()) {
+      return res.status(400).json({ error: 'Title and content are required' });
+    }
+
+    const post = await Post.updatePost(id, req.user.id, {
+      title: title.trim(),
+      content: content.trim(),
+      category_id: category_id || null
+    });
+
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found or not yours' });
+    }
+
+    return res.json(post);
+  } catch (err) {
+    console.error('Update post error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
