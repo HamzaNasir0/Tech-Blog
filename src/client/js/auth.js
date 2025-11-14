@@ -47,4 +47,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  });
+
+  if (registerForm) {
+    const status = document.getElementById('registerStatus');
+
+    registerForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      status.textContent = 'Creating account...';
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value.trim();
+
+      try {
+        const res = await fetch(`${API_BASE}/users/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          status.textContent = data.error || 'Registration failed';
+          return;
+        }
+
+        status.textContent = 'Account created! You can now login.';
+      } catch (err) {
+        console.error('Register error', err);
+        status.textContent = 'Error registering';
+      }
+    });
+  }
+});
