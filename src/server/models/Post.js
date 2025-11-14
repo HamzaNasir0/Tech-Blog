@@ -29,3 +29,19 @@ async function getAllPosts(categoryId) {
   const [rows] = await db.query(sql, params);
   return rows;
 }
+
+async function getPostById(id) {
+  const [rows] = await db.query(
+    `
+    SELECT p.id, p.title, p.content, p.created_at, p.updated_at,
+           c.name AS category_name, c.id AS category_id,
+           u.username AS author_name
+    FROM posts p
+    LEFT JOIN categories c ON p.category_id = c.id
+    LEFT JOIN users u ON p.user_id = u.id
+    WHERE p.id = ?
+  `,
+    [id]
+  );
+  return rows[0];
+}
