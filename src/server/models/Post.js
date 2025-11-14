@@ -45,3 +45,18 @@ async function getPostById(id) {
   );
   return rows[0];
 }
+
+async function getPostsByUser(userId) {
+  const [rows] = await db.query(
+    `
+    SELECT p.id, p.title, p.content, p.created_at, p.updated_at,
+           c.name AS category_name, c.id AS category_id
+    FROM posts p
+    LEFT JOIN categories c ON p.category_id = c.id
+    WHERE p.user_id = ?
+    ORDER BY p.created_at DESC
+  `,
+    [userId]
+  );
+  return rows;
+}
