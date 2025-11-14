@@ -68,3 +68,19 @@ async function createPost({ title, content, category_id, user_id }) {
   );
   return getPostById(result.insertId);
 }
+
+async function updatePost(id, userId, { title, content, category_id }) {
+  const [rows] = await db.query(
+    'SELECT * FROM posts WHERE id = ? AND user_id = ?',
+    [id, userId]
+  );
+  if (!rows[0]) return null;
+
+  await db.query(
+    'UPDATE posts SET title = ?, content = ?, category_id = ? WHERE id = ?',
+    [title, content, category_id || null, id]
+  );
+
+  return getPostById(id);
+}
+
