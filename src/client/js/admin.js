@@ -179,3 +179,34 @@ async function handleSave(e, token) {
     postStatus.textContent = 'Error saving post';
   }
 }
+
+async function handleDelete(token) {
+  const id = postIdInput.value;
+  if (!id) return;
+
+  if (!confirm('Delete this post?')) return;
+
+  postStatus.textContent = 'Deleting...';
+
+  try {
+    const res = await fetch(`${API_BASE}/posts/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      postStatus.textContent = data.error || 'Failed to delete post';
+      return;
+    }
+
+    postStatus.textContent = 'Post deleted';
+    clearForm();
+    loadMyPosts(token);
+  } catch (err) {
+    console.error('Delete post error', err);
+    postStatus.textContent = 'Error deleting post';
+  }
+}
