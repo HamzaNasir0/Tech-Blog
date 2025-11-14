@@ -137,3 +137,45 @@ function clearForm() {
   deleteBtn.style.display = 'none';
   postStatus.textContent = '';
 }
+
+async function handleSave(e, token) {
+  e.preventDefault();
+  postStatus.textContent = 'Saving...';
+
+  const id = postIdInput.value;
+  const title = postTitleInput.value.trim();
+  const content = postContentTextarea.value.trim();
+  const category_id = postCategorySelect.value || null;
+
+  if (!title || !content) {
+    postStatus.textContent = 'Title and content are required.';
+    return;
+  }
+
+  const method = id ? 'PUT' : 'POST';
+  const url = id ? `${API_BASE}/posts/${id}` : `${API_BASE}/posts`;
+
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ title, content, category_id })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      postStatus.textContent = data.error || 'Failed to save post';
+      return;
+    }
+
+    postStatus.textContent = id ? 'Post updated!' : 'Post created!';
+    clearForm();
+    loadMyPosts(token);
+  } catch (err) {
+    console.error('Save post error', err);
+    postStatus.textContent = 'Error saving post';
+  }
+}
