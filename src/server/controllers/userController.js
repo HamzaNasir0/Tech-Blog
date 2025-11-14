@@ -28,3 +28,41 @@ async function register(req, res) {
     return res.status(500).json({ error: 'Server error' });
   }
 }
+
+async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email?.trim() || !password?.trim()) {
+      return res.status(400).json({ error: 'Email and password required' });
+    }
+
+    const user = await User.findByEmail(email.trim());
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const valid = await bcrypt.compare(password, user.password_hash);
+    if (!valid) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        username: user.username,
+        email: user.email
+      },
+      process.env.JWT_SECRET || 'devsecret',
+      { expiresIn: '1h' }
+    );
+
+    return res.json({
+      token,
+      user: { id: user.id, username: user.username, email: user.email }
+    });
+  } catch (err) {
+    console.error('Login error:', err);
+    return res.status(500).json({ error: 'Server error' });
+  }
+}
