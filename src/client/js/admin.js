@@ -75,3 +75,44 @@ async function loadCategories(token) {
     console.error('Error loading categories', err);
   }
 }
+
+async function loadMyPosts(token) {
+  try {
+    const res = await fetch(`${API_BASE}/posts/me/my-posts`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (!res.ok) {
+      myPostsList.innerHTML = '<p>Error loading your posts.</p>';
+      return;
+    }
+
+    const posts = await res.json();
+    myPostsList.innerHTML = '';
+
+    if (!posts.length) {
+      myPostsList.innerHTML = '<p>You have no posts yet.</p>';
+      return;
+    }
+
+    posts.forEach(post => {
+      const div = document.createElement('div');
+      div.className = 'admin-post-item';
+      div.dataset.id = post.id;
+      div.innerHTML = `
+        <div class="admin-post-item-title">${post.title}</div>
+        <div class="admin-post-item-meta">
+          ${post.category_name || 'Uncategorised'} •
+          ${new Date(post.created_at).toLocaleDateString()}
+        </div>
+      `;
+
+      div.addEventListener('click', () => loadIntoForm(post));
+      myPostsList.appendChild(div);
+    });
+  } catch (err) {
+    console.error('Error loading my posts', err);
+  }
+}
