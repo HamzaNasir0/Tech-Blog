@@ -13,9 +13,10 @@
   "license": "ISC",
   "author": "Hamza",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "src/server/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server/app.js",
+    "dev": "nodemon src/server/app.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
