@@ -288,3 +288,11 @@ textarea {
   font-size: 12px;
   color: #71767b;
 }
+
+/* Status messages */
+
+.status-message {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #71767b;
+}
