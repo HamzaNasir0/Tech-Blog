@@ -29,3 +29,14 @@ CREATE TABLE IF NOT EXISTS posts (
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+-- SEED CATEGORIES
+INSERT INTO categories (name, slug) VALUES
+('All', 'all'),
+('Gaming', 'gaming'),
+('Reviews', 'reviews'),
+('Guides', 'guides'),
+('News', 'news'),
+('Mods', 'mods')
+ON DUPLICATE KEY UPDATE name = VALUES(name);
+
