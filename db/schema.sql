@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS techblog;
-USE techblog;
+USE railway;
 
 -- USERS TABLE
 CREATE TABLE IF NOT EXISTS users (
