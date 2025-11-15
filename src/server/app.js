@@ -19,14 +19,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/categories', categoryRoutes);
 
+// Serve static client
 const clientPath = path.join(__dirname, '..', 'client');
 app.use(express.static(clientPath));
 
+// Fallback to index.html for root
 app.use((req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
 
-// fixed from local to railway
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
