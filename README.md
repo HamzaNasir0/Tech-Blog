@@ -1,10 +1,10 @@
-#📘 Tech Blog – Backend Setup Guide
+##📘 Tech Blog – Backend Setup Guide
 
 A lightweight Node.js + Express + MySQL backend powering a simple Tech Blog API.
 
 This README explains how to install, configure, and run the server.
 
-#🚀 Features
+##🚀 Features
 
 User registration & login (JWT authentication)
 
@@ -18,7 +18,7 @@ Serves a frontend client folder
 
 Clean modular Express routing
 
-#📦 Requirements
+##📦 Requirements
 
 Ensure you have the following installed:
 
@@ -30,7 +30,7 @@ npm
 
 (Optional) MySQL Workbench or TablePlus
 
-#🛠️ Installation
+##🛠️ Installation
 
 Clone the project and install dependencies:
 
@@ -54,7 +54,7 @@ If your MySQL server uses a custom port:
 
 DB_PORT=3306
 
-#🗄️ Database Setup
+##🗄️ Database Setup
 
 Start your MySQL server.
 
@@ -76,7 +76,7 @@ Create a demo user (email: demo@example.com
 
 Insert a welcome post
 
-#▶️ Running the Server
+##▶️ Running the Server
 
 Start normally:
 
@@ -93,7 +93,7 @@ If successful, you'll see:
 Database connected successfully
 Server running on http://localhost:3001
 
-#🌐 API Endpoints
+##🌐 API Endpoints
 Users
 Method	Endpoint	Description
 POST	/api/users/register	Register a new user
