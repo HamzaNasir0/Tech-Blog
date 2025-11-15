@@ -11,3 +11,47 @@ body {
   line-height: 1.5;
   padding: 20px;
 }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header / Nav */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #2f3336;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.logo span {
+  color: #1d9bf0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-links a {
+  color: #e7e9ea;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  border-color: #2f3336;
+  background: #1e2732;
+}
