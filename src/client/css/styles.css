@@ -147,3 +147,32 @@ h2 {
   font-size: 14px;
   color: #e7e9ea;
 }
+
+/* Single post */
+
+.post-page {
+  background: #1e2732;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #2f3336;
+}
+
+.post-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.post-page-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #71767b;
+  margin-bottom: 16px;
+}
+
+.post-page-content {
+  font-size: 15px;
+  white-space: pre-wrap;
+}
