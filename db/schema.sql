@@ -40,3 +40,16 @@ INSERT INTO categories (name, slug) VALUES
 ('Mods', 'mods')
 ON DUPLICATE KEY UPDATE name = VALUES(name);
 
+-- SEED DEMO USER (password: password123)
+INSERT INTO users (username, email, password_hash)
+VALUES ('demo', 'dummyDemo@example.com', '$2a$10$zW6s8OQdH8xHBlq8ZP2uUO/4DduGwQ11P5Jy.bnKqJMu38xpv8SLe')
+ON DUPLICATE KEY UPDATE username = VALUES(username);
+
+-- SEED FIRST POST
+INSERT INTO posts (title, content, category_id, user_id)
+SELECT 'Welcome to the Tech Blog',
+       'This is your first demo post. Edit or delete it from the Admin page.',
+       2, u.id
+FROM users u
+WHERE u.email = 'dummyDemo@example.com'
+LIMIT 1;
