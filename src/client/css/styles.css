@@ -55,3 +55,16 @@ header {
   border-color: #2f3336;
   background: #1e2732;
 }
+
+/* Page titles */
+
+h1.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
