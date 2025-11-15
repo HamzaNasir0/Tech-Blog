@@ -176,3 +176,48 @@ h2 {
   font-size: 15px;
   white-space: pre-wrap;
 }
+
+/* Forms */
+
+.form-card {
+  background: #1e2732;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #2f3336;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  background: #15202b;
+  border-radius: 8px;
+  border: 1px solid #2f3336;
+  padding: 8px 10px;
+  color: #e7e9ea;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #1d9bf0;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
