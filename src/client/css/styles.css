@@ -221,3 +221,33 @@ textarea {
   resize: vertical;
   min-height: 120px;
 }
+
+/* Buttons */
+
+.btn {
+  background: #1d9bf0;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  background: #1a8cd8;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #2f3336;
+}
+
+.btn-danger {
+  background: #f4212e;
+}
+
+.btn-danger:hover {
+  background: #dc1e2a;
+}
