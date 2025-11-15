@@ -323,3 +323,13 @@ textarea {
 .empty-state small {
   font-size: 14px;
 }
+
+/* Footer */
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #71767b;
+  font-size: 13px;
+}
