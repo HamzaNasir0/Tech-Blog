@@ -68,3 +68,27 @@ h2 {
   font-size: 18px;
   margin-bottom: 8px;
 }
+
+/* Category filter */
+
+.category-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.category-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #2f3336;
+  background: #1e2732;
+  font-size: 13px;
+  cursor: pointer;
+  color: #e7e9ea;
+}
+
+.category-pill.active {
+  background: #1d9bf0;
+  border-color: #1d9bf0;
+}
