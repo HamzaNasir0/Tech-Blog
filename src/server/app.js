@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Health check for Railway
 app.get('/health', (req, res) => {
   res.json({ status: "ok" });
 });
@@ -22,9 +23,11 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/categories', categoryRoutes);
 
-const clientPath = path.join(__dirname, 'client'); 
+// Correct path: server => ../client
+const clientPath = path.join(__dirname, '..', 'client');
 app.use(express.static(clientPath));
 
+// Fallback for static files
 app.get('*', (req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
