@@ -1,8 +1,5 @@
 const mysql = require('mysql2/promise');
 
-// Railway provides these automatically:
-// MYSQLHOST, MYSQLUSER, MYSQLPASSWORD, MYSQLDATABASE, MYSQLPORT
-
 const pool = mysql.createPool({
   host: process.env.MYSQLHOST || process.env.DB_HOST,
   user: process.env.MYSQLUSER || process.env.DB_USER,
@@ -12,20 +9,16 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ssl: { rejectUnauthorized: false }
 });
 
-// Test connection on startup
-(async () => {
-  try {
-    const conn = await pool.getConnection();
-    console.log("Connected to MySQL (Railway)");
+pool.getConnection()
+  .then(conn => {
+    console.log("Connected to MySQL on Railway");
     conn.release();
-  } catch (err) {
-    console.error("MySQL Connection Failed:", err.message);
-  }
-})();
+  })
+  .catch(err => {
+    console.error("Database connection failed:", err);
+  });
 
 module.exports = pool;

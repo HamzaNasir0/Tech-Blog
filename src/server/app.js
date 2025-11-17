@@ -17,17 +17,19 @@ app.get('/health', (req, res) => {
   res.json({ status: "ok" });
 });
 
+// API routes
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/categories', categoryRoutes);
 
-const clientPath = path.join(__dirname, '..', 'client');
+const clientPath = path.join(__dirname, 'client'); 
 app.use(express.static(clientPath));
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
