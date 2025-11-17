@@ -21,16 +21,15 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/categories', categoryRoutes);
 
+
 const clientPath = path.join(__dirname, '..', 'client');
 app.use(express.static(clientPath));
 
-app.get('/api/*', (req, res) => {
-  res.status(404).json({ error: "API route not found" });
-});
 
-app.get('(.*)', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
