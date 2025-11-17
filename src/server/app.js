@@ -27,8 +27,8 @@ app.use('/api/categories', categoryRoutes);
 const clientPath = path.join(__dirname, '..', 'client');
 app.use(express.static(clientPath));
 
-// Fallback for static files
-app.get('*', (req, res) => {
+// Fallback route - Express 5 compatible
+app.use((req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
 
