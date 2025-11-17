@@ -13,26 +13,25 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Health check for Railway
 app.get('/health', (req, res) => {
   res.json({ status: "ok" });
 });
 
-// API routes
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/categories', categoryRoutes);
 
-// Correct path: server => ../client
 const clientPath = path.join(__dirname, '..', 'client');
 app.use(express.static(clientPath));
 
-// Fallback route - Express 5 compatible
-app.use((req, res) => {
+app.get('/api/*', (req, res) => {
+  res.status(404).json({ error: "API route not found" });
+});
+
+app.get('(.*)', (req, res) => {
   res.sendFile(path.join(clientPath, 'index.html'));
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
